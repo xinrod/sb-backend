@@ -29,26 +29,6 @@ app.use((req, res, next) => {
   next();
 });
 
-const NaturalLanguageUnderstandingV1 = require('ibm-watson/natural-language-understanding/v1');
-const { IamAuthenticator } = require('ibm-watson/auth');
-
-const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
-  version: '2020-08-01',
-  authenticator: new IamAuthenticator({
-    apikey: '{apikey}',
-  }),
-  serviceUrl: '{url}',
-});
-
-const analyzeParams = {
-  'url': 'www.ibm.com',
-  'features': {
-    'categories': {
-      'limit': 3
-    }
-  }
-};
-
 naturalLanguageUnderstanding.analyze(analyzeParams)
   .then(analysisResults => {
     console.log(JSON.stringify(analysisResults, null, 2));
